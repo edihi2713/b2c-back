@@ -11,41 +11,30 @@ import {
   GospelTextDocument,
   GospelTexts,
 } from 'src/schemas/common/text.schema';
-import { RedisProvider } from '../redis/redis.provider';
 
 @Injectable()
 export class CommonProvider {
   constructor(
-    private readonly redis: RedisProvider,
     @InjectModel(GospelTexts.name) private textModel: Model<GospelTextDocument>,
     @InjectModel(Settings.name) private settingModel: Model<SettingDocument>,
     @InjectModel(Languages.name) private languageModel: Model<LanguageDocument>,
   ) {}
 
   async getTexts(ids: string[], languageCode: string) {
-    const key = JSON.stringify(ids);
-    return this.redis.getData(key, () =>
-      this.textModel.find({ key: { $in: ids }, languageCode }).clone(),
-    );
+    return  this.textModel.find({ key: { $in: ids }, languageCode });
   }
 
-  async refreshCache() {
-    this.redis.refreshCache();
-  }
 
   async getBasicSettings() {
-    const langage = await this.redis.getData('language', () =>
-      this.languageModel.findOne({ selected: true }),
-    );
-    return this.redis.getBasicSettings(() => {
-      const result = new GeneralSettingsDTO();
+    const langage = await  this.languageModel.findOne({ selected: true });
+
+    const result = new GeneralSettingsDTO();
       if (langage) result.language = langage.code;
       return result;
-    });
   }
 
   async getAllSettings() {
-    return this.redis.getData('getAllUsers', () => this.settingModel.find());
+    return  this.settingModel.find();
   }
 
   async getSettingById(id: string) {

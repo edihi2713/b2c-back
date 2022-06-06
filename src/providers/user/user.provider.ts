@@ -4,17 +4,16 @@ import { Model } from 'mongoose';
 import { nanoid } from 'nanoid';
 import { UserDTO } from 'src/schemas/user/user.DTO';
 import { Users, UserDocument } from 'src/schemas/user/user.schema';
-import { RedisProvider } from '../redis/redis.provider';
+
 
 @Injectable()
 export class UserProvider {
   constructor(
-    private readonly redis: RedisProvider,
     @InjectModel(Users.name) private userModel: Model<UserDocument>,
   ) {}
 
   async getAllUsers() {
-    return this.redis.getData('getAllUsers', () => this.userModel.find());
+    return this.userModel.find();
   }
 
   async getUserById(id: string) {

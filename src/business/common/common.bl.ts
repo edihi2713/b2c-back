@@ -14,10 +14,6 @@ export class CommonBusiness {
     >;
   }
 
-  async refreshCache(): Promise<void> {
-    return this.provider.refreshCache() as unknown as Promise<any>;
-  }
-
   async getAllSettings(): Promise<Settings[]> {
     return this.provider.getAllSettings() as unknown as Promise<Settings[]>;
   }

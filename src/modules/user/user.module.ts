@@ -4,13 +4,12 @@ import { Users, UserSchema } from 'src/schemas/user/user.schema';
 import { UserController } from 'src/controllers/user/user.controller';
 import { UserBusiness } from 'src/business/user/user.bl';
 import { UserProvider } from 'src/providers/user/user.provider';
-import { RedisProvider } from 'src/providers/redis/redis.provider';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Users.name, schema: UserSchema }]),
   ],
   controllers: [UserController],
-  providers: [UserBusiness, UserProvider, RedisProvider],
+  providers: [UserBusiness, UserProvider],
 })
 export class UserModule {}

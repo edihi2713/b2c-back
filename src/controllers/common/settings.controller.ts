@@ -18,11 +18,6 @@ import { Settings } from 'src/schemas/common/setting.schema';
 export class SettingsController {
   constructor(private readonly commonBl: CommonBusiness) {}
 
-  @Get('refreshCache')
-  async newUser(): Promise<void> {
-    return await this.commonBl.refreshCache();
-  }
-
   @Post()
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))

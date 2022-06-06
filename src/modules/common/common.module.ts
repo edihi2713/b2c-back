@@ -4,7 +4,6 @@ import { GospelTexts, GospelTextSchema } from 'src/schemas/common/text.schema';
 import { TextController } from 'src/controllers/common/text.controller';
 import { CommonBusiness } from 'src/business/common/common.bl';
 import { CommonProvider } from 'src/providers/common/common.provider';
-import { RedisProvider } from 'src/providers/redis/redis.provider';
 import { SettingsController } from 'src/controllers/common/settings.controller';
 import { Settings, SettingSchema } from 'src/schemas/common/setting.schema';
 import { Languages, LanguageSchema } from 'src/schemas/common/languages.schema';
@@ -18,6 +17,6 @@ import { Languages, LanguageSchema } from 'src/schemas/common/languages.schema';
     ]),
   ],
   controllers: [TextController, SettingsController],
-  providers: [CommonBusiness, CommonProvider, RedisProvider],
+  providers: [CommonBusiness, CommonProvider],
 })
 export class CommonModule {}

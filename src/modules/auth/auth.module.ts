@@ -12,7 +12,6 @@ import { GoogleStrategy } from './googleStrategy';
 import { AuthGoogleController } from 'src/controllers/auth/auth.google.controller';
 import { AuthGoogleBusiness } from 'src/business/auth/google.auth.bl';
 import { UserProvider } from 'src/providers/user/user.provider';
-import { RedisProvider } from 'src/providers/redis/redis.provider';
 
 @Module({
   imports: [
@@ -29,7 +28,6 @@ import { RedisProvider } from 'src/providers/redis/redis.provider';
     AuthGoogleBusiness,
     AuthProvider,
     UserProvider,
-    RedisProvider,
     JwtStrategy,
     GoogleStrategy,
   ],
