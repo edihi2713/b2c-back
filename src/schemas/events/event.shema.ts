@@ -23,6 +23,9 @@ export class Events {
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Users' })
   user: string;
+
+  @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Church' })
+  churchId: string;
 }
 
 export type EventDocument = Events & mongoose.Document;

@@ -3,7 +3,9 @@ import {
     Controller,
     Post,
     Get,
-    UseGuards
+    UseGuards,
+    Request,
+    Param
 } from '@nestjs/common';
 
 import { AuthGuard } from '@nestjs/passport';
@@ -15,13 +17,18 @@ import { EventDTO } from 'src/schemas/events/event.DTO';
 
 
 @ApiTags('Event')
+@ApiBearerAuth()
+@UseGuards(AuthGuard('jwt'))
 @Controller('event')
 export class EventController {
     constructor(private readonly eventBL: EventBusiness) {}
 
   @Post()
-  async newEvent(@Body() event: EventDTO): Promise<Events> {
-    return await this.eventBL.createEvent(event);
+  async newEvent(@Body() event: EventDTO, @Request() req): Promise<Events> {
+     
+    let mappedEvent = {...event, user: req.user._id };
+
+    return await this.eventBL.createEvent(mappedEvent);
   }
 
   @Get()
@@ -29,4 +36,10 @@ export class EventController {
     return  await this.eventBL.getAll();
   }
 
+  @Get("eventsByChurch/:churchId")
+  async getEventByChurch( @Param('churchId') churchId: string): Promise< Events [] > {
+    console.log(churchId);
+    
+    return await this.eventBL.getByChurchId(churchId);
+  }
 }

@@ -23,6 +23,7 @@ export class AuthBusiness {
     const payload: JWTPayload = { userId: user.email };
     return {
       access_token: this.jwtService.sign(payload),
+      churchId: user.churchId
     };
   }
 }

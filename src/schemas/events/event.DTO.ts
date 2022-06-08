@@ -17,4 +17,7 @@ export class EventDTO {
 
   @ApiProperty({ type: String })
   user: string;
+
+  @ApiProperty({ type: String })
+  churhId: string;
 }

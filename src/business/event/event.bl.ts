@@ -14,4 +14,8 @@ export class EventBusiness {
   async getAll(): Promise<Events[]> {
     return this.provider.getAll() as unknown as Promise<Events[]>;
   }
+
+  async getByChurchId(churchId: string): Promise<Events[]> {
+    return this.provider.getByChurchId(churchId) as unknown as Promise<Events[]>;
+  }
 }

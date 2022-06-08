@@ -16,8 +16,13 @@ export class EventProvider {
   }
 
   async getAll() {
-    return this.eventModel.find().populate('user');
+    return this.eventModel.find().populate('user').populate("churchId");
   }
 
+  async getByChurchId(churchId: string) {
+    return this.eventModel.find({
+      churchId: churchId
+    }).populate('user').populate("churchId");
+  }
 
 }

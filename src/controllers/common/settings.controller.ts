@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   UseGuards,
+  Request
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
@@ -28,7 +29,9 @@ export class SettingsController {
   @Get()
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
-  async getAllSettings(): Promise<Settings[]> {
+  async getAllSettings(@Request() req): Promise<Settings[]> {
+    console.log(req.user);
+    
     return await this.commonBl.getAllSettings();
   }
 
