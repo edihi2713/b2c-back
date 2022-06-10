@@ -5,6 +5,7 @@ import { CommonModule } from './modules/common/common.module';
 import { UserModule } from './modules/user/user.module';
 import { ChurchModule } from './modules/church/church.module';
 import { EventModule } from './modules/event/event.module';
+import { AttendeeModule } from './modules/attendee/attendee.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { EventModule } from './modules/event/event.module';
     UserModule,
     CommonModule,
     ChurchModule,
-    EventModule
+    EventModule,
+    AttendeeModule
   ],
 })
 export class AppModule {}

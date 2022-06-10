@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
 
-@Schema()
+@Schema({ timestamps: true })
 export class Events {
   _id: number;
 

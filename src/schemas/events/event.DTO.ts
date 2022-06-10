@@ -19,5 +19,5 @@ export class EventDTO {
   user: string;
 
   @ApiProperty({ type: String })
-  churhId: string;
+  churchId: string;
 }
