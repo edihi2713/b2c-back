@@ -18,11 +18,11 @@ import { EventDTO, CreateEventDTO } from 'src/schemas/events/event.DTO';
 
 @ApiTags('Event')
 @ApiBearerAuth()
-@UseGuards(AuthGuard('jwt'))
 @Controller('event')
 export class EventController {
     constructor(private readonly eventBL: EventBusiness) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Post()
   async newEvent(@Body() event: EventDTO, @Request() req): Promise<Events> {
       
@@ -31,6 +31,7 @@ export class EventController {
     return await this.eventBL.createEvent(mappedEvent);
   }
   
+  @UseGuards(AuthGuard('jwt'))
   @Get()
   async getAll(): Promise< Events [] > {
     return  await this.eventBL.getAll();
