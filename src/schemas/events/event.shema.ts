@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-
+import { Booking } from './Boooking.type';
 
 @Schema({ timestamps: true })
 export class Events {
@@ -18,6 +18,9 @@ export class Events {
   @Prop({ required: true })
   capacity: number;
 
+  @Prop()
+  isBookingAvailable: boolean;
+
   @Prop({ required: true, default: "Pendiente" })
   status: string;
 
@@ -26,6 +29,9 @@ export class Events {
 
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: 'Church' })
   churchId: string;
+
+  @Prop()
+  Bookings: Booking [] 
 }
 
 export type EventDocument = Events & mongoose.Document;

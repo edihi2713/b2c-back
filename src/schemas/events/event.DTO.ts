@@ -18,6 +18,18 @@ export class EventDTO {
   @ApiProperty({ type: String })
   user: string;
 
+  @ApiProperty({ type: Boolean })
+  isBookingAvailable: boolean;
+
   @ApiProperty({ type: String })
   churchId: string;
+}
+
+export class CreateEventDTO {
+
+  @ApiProperty({ type: Date })
+  bookingDate: string;
+
+  @ApiProperty({ type: String })
+  attendeeDocument: string;
 }
